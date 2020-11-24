@@ -2,7 +2,8 @@ import Sprite from './physics/sprite.js';
 import Vector2 from './physics/vectors.js';
 let canvas = <HTMLCanvasElement> document.getElementById('test-canvas');
 let ctx = canvas.getContext('2d');
-let thing = new PhysicsObject(
+let thing = new Sprite(
+  './src/images/turtle.png',
   new Vector2(50, 5),
   new Vector2(50, 50),
   1,
