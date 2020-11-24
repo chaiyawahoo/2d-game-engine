@@ -1,4 +1,4 @@
-import PhysicsObject from './physics/PhysicsObject.js';
+import Sprite from './physics/sprite.js';
 import Vector2 from './physics/vectors.js';
 let canvas = <HTMLCanvasElement> document.getElementById('test-canvas');
 let ctx = canvas.getContext('2d');

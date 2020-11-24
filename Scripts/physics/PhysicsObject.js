@@ -67,4 +67,4 @@ var PhysicsObject = /** @class */ (function () {
 }());
 export { PhysicsObject };
 export default PhysicsObject;
-//# sourceMappingURL=PhysicsObject.js.map
+//# sourceMappingURL=physicsObject.js.map
