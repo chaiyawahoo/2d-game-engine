@@ -5,19 +5,21 @@ import Vector2 from './vectors.js';
  */
 var PhysicsObject = /** @class */ (function () {
     function PhysicsObject() {
-        this.position = new Vector2(0, 0);
+        this.position = new Vector2(50, 0);
         this.velocity = new Vector2(0, 0);
         this.acceleration = new Vector2(0, 0);
+        this.hitbox = new Vector2(50, 50);
         this.mass = 1;
-        this.timeStep = 0.1;
+        this.timeStep = .05;
     }
     // Physics calculations
     PhysicsObject.prototype.move = function () {
         // Use implicit Euler's method to approximate new state
-        this.position.x += this.velocity.x * this.timeStep;
-        this.position.y += this.velocity.y * this.timeStep;
-        this.velocity.x += this.acceleration.x * this.timeStep;
-        this.velocity.y += this.acceleration.y * this.timeStep;
+        this.position.step(this.velocity.x * this.timeStep, this.velocity.y * this.timeStep);
+        var terminalVelocity = 100 * Math.sqrt(20 * this.mass / this.hitbox.x);
+        if (this.velocity.magnitude < terminalVelocity) {
+            this.velocity.step(this.acceleration.x * this.timeStep, this.acceleration.y * this.timeStep);
+        }
         return this.position;
     };
     PhysicsObject.prototype.applyForce = function (force) {
@@ -33,6 +35,11 @@ var PhysicsObject = /** @class */ (function () {
     };
     // Rendering
     PhysicsObject.prototype.render = function (ctx) {
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.rect(this.position.x, this.position.y, this.hitbox.x, this.hitbox.y);
+        ctx.fill();
+        ctx.closePath();
     };
     return PhysicsObject;
 }());

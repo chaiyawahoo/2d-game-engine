@@ -26,7 +26,9 @@ var Vector2 = /** @class */ (function () {
     });
     Object.defineProperty(Vector2.prototype, "magnitude", {
         get: function () {
-            return Math.sqrt((this.x_component ^ 2) + (this.y_component ^ 2));
+            var x_square = Math.pow(this.x_component, 2);
+            var y_square = Math.pow(this.y_component, 2);
+            return Math.sqrt(x_square + y_square);
         },
         enumerable: false,
         configurable: true
@@ -42,6 +44,11 @@ var Vector2 = /** @class */ (function () {
     Vector2.prototype.update = function (new_x, new_y) {
         this.x_component = new_x;
         this.y_component = new_y;
+        return this;
+    };
+    Vector2.prototype.step = function (delta_x, delta_y) {
+        this.x_component += delta_x;
+        this.y_component += delta_y;
         return this;
     };
     return Vector2;

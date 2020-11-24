@@ -19,7 +19,9 @@ export class Vector2 {
   }
 
   get magnitude():number {
-      return Math.sqrt((this.x_component ^ 2) + (this.y_component ^ 2));
+    const x_square:number = Math.pow(this.x_component, 2);
+    const y_square:number = Math.pow(this.y_component, 2);
+    return Math.sqrt(x_square + y_square);
   }
 
   get direction():number {
@@ -38,6 +40,12 @@ export class Vector2 {
   public update(new_x:number, new_y:number):Vector2 {
     this.x_component = new_x;
     this.y_component = new_y;
+    return this;
+  }
+
+  public step(delta_x:number, delta_y:number):Vector2 {
+    this.x_component += delta_x;
+    this.y_component += delta_y;
     return this;
   }
 }

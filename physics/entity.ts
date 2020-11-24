@@ -1,4 +1,4 @@
-import Vector2 from "./vectors"
+import Vector2 from "./vectors.js"
 
 /*
  * This is our interface that will represent all

@@ -1,5 +1,5 @@
-import Entity from "./entity";
-import Vector2 from './vectors';
+import Entity from "./entity.js";
+import Vector2 from './vectors.js';
 /*
  * This class will implement our physics entity interface, and be a parent class
  * for all future physics enabled game objects
@@ -16,20 +16,23 @@ import Vector2 from './vectors';
    public timeStep:number;
 
    constructor() {
-     this.position = new Vector2(0, 0);
+     this.position = new Vector2(50, 0);
      this.velocity = new Vector2(0, 0);
      this.acceleration = new Vector2(0, 0);
+     this.hitbox = new Vector2(50, 50);
      this.mass = 1;
-     this.timeStep = 0.1;
+     this.timeStep = .05;
    }
 
    // Physics calculations
    public move():Vector2 {
      // Use implicit Euler's method to approximate new state
-     this.position.x += this.velocity.x * this.timeStep;
-     this.position.y += this.velocity.y * this.timeStep;
-     this.velocity.x += this.acceleration.x * this.timeStep;
-     this.velocity.y += this.acceleration.y * this.timeStep;
+     this.position.step(this.velocity.x * this.timeStep, this.velocity.y * this.timeStep);
+
+     let terminalVelocity = 100 * Math.sqrt(20*this.mass / this.hitbox.x);
+     if (this.velocity.magnitude < terminalVelocity) {
+       this.velocity.step(this.acceleration.x * this.timeStep, this.acceleration.y * this.timeStep);
+     }
      return this.position;
    }
 
@@ -49,7 +52,11 @@ import Vector2 from './vectors';
 
    // Rendering
    public render(ctx:CanvasRenderingContext2D):void {
-
+     ctx.fillStyle = "#fff";
+     ctx.beginPath();
+     ctx.rect(this.position.x, this.position.y, this.hitbox.x, this.hitbox.y);
+     ctx.fill();
+     ctx.closePath();
    }
  }
 
