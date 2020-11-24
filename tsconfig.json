@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "sourceMap": true,
+    "outDir": "Scripts"
+  },
+  "files": [
+    "test.ts",
+    "physics/vectors.ts",
+    "physics/entity.ts",
+    "physics/physicsObject.ts"
+  ]
+}
