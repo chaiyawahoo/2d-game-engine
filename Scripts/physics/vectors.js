@@ -1,15 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Vector2 = void 0;
 var Vector2 = /** @class */ (function () {
-    function Vector2() {
-        this.x_component = 0;
-        this.y_component = 0;
+    function Vector2(x, y) {
+        this.x_component = x;
+        this.y_component = y;
     }
     Object.defineProperty(Vector2.prototype, "x", {
         // Accessors
         get: function () {
             return this.x_component;
+        },
+        set: function (delta) {
+            this.x_component += delta;
         },
         enumerable: false,
         configurable: true
@@ -17,6 +17,9 @@ var Vector2 = /** @class */ (function () {
     Object.defineProperty(Vector2.prototype, "y", {
         get: function () {
             return this.y_component;
+        },
+        set: function (delta) {
+            this.y_component += delta;
         },
         enumerable: false,
         configurable: true
@@ -41,13 +44,8 @@ var Vector2 = /** @class */ (function () {
         this.y_component = new_y;
         return this;
     };
-    Vector2.prototype.step = function (delta_x, delta_y) {
-        this.x_component += delta_x;
-        this.y_component += delta_y;
-        return this;
-    };
     return Vector2;
 }());
-exports.Vector2 = Vector2;
-exports.default = Vector2;
+export { Vector2 };
+export default Vector2;
 //# sourceMappingURL=vectors.js.map

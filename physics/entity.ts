@@ -11,11 +11,14 @@ export interface Entity {
   velocity:Vector2;
   acceleration:Vector2;
   hitbox:Vector2;
+  mass:number;
   collidable:boolean;
   bounded:boolean;
+  timeStep:number;
 
   // Physics calculations
   move():void;
+  applyForce(force:Vector2):void;
   checkCollision(other:Entity):boolean;
   checkBounds(canvas:HTMLCanvasElement):boolean;
 
