@@ -13,11 +13,10 @@ export interface Entity {
   mass:number;
   collidable:boolean;
   bounded:boolean;
-  timeStep:number;
 
   // Physics calculations
-  move():void;
-  applyForce(force:Vector2):void;
+  move(timeStep:number):Vector2;
+  applyForce(force:Vector2):Vector2;
   checkCollision(other:Entity):boolean;
   checkBounds(canvas:HTMLCanvasElement):boolean;
 
