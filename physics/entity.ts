@@ -3,7 +3,6 @@ import Vector2 from "./vectors.js"
 /*
  * This is our interface that will represent all
  * physics-objects in our game environments.
- * TODO: ADD SPRITE IMAGES, EMITTERS, AND DEFORMATION
  */
 export interface Entity {
   // Instance properties for all physics entities
