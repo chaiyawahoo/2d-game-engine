@@ -25,7 +25,20 @@ export class Vector2 {
   }
 
   get direction():number {
-      return Math.atan(this.y_component / this.x_component);
+    return Math.atan(this.y_component / this.x_component);
+  }
+
+  get unit():Vector2 {
+    const x_unit = this.x_component / this.magnitude;
+    const y_unit = this.y_component / this.magnitude;
+    return new Vector2(x_unit, y_unit);
+  }
+
+  get normal():Vector2 {
+    // should we choose the other direction?
+    const x_normal = -this.y_component / this.magnitude;
+    const y_normal = this.x_component / this.magnitude;
+    return new Vector2(x_normal, y_normal);
   }
 
   set x(delta:number) {
@@ -46,6 +59,42 @@ export class Vector2 {
   public step(delta_x:number, delta_y:number):Vector2 {
     this.x_component += delta_x;
     this.y_component += delta_y;
+    return this;
+  }
+
+  public scale(other:Vector2):Vector2 {
+    this.x_component *= other.x;
+    this.y_component *= other.y;
+    return this;
+  }
+
+  public scaleInverse(other:Vector2):Vector2 {
+    this.x_component /= other.x;
+    this.y_component /= other.y;
+    return this;
+  }
+
+  public add(other:Vector2):Vector2 {
+    this.x_component += other.x;
+    this.y_component += other.y;
+    return this;
+  }
+
+  public subtract(other:Vector2):Vector2 {
+    this.x_component -= other.x;
+    this.y_component -= other.y;
+    return this;
+  }
+
+  public multiply(factor:number):Vector2 {
+    this.x_component *= factor;
+    this.y_component *= factor;
+    return this;
+  }
+
+  public divide(factor:number):Vector2 {
+    this.x_component /= factor;
+    this.y_component /= factor;
     return this;
   }
 }
