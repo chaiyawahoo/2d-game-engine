@@ -1,7 +1,7 @@
 import Sprite from "./sprite.js";
 import Vector2 from './vectors.js';
 /*
- * 
+ *
  */
 export class ParticleEmitter {
   public spriteTemplates:Sprite[];
@@ -45,6 +45,10 @@ export class ParticleEmitter {
     this.spawn(direction, magnitude, templateIndex);
   }
 
+  public moveTo(position:Vector2) {
+    this.position = new Vector2(position.x, position.y);
+  }
+
   public update(ctx:CanvasRenderingContext2D, timeStep:number) {
     if (this.durations[0] >= this.duration) {
       this.durations.shift();
@@ -60,7 +64,7 @@ export class ParticleEmitter {
     this.waitTimer += timeStep;
     for (let i = 0; i < this.sprites.length; i++) {
       if (!this.sprites[i].checkBounds(ctx.canvas)) {
-        this.sprites[i].move(0.05);
+        this.sprites[i].move(timeStep);
       }
     }
     this.render(ctx)

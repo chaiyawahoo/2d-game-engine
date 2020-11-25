@@ -34,6 +34,9 @@ var ParticleEmitter = /** @class */ (function () {
         var templateIndex = Math.floor(Math.random() * this.spriteTemplates.length);
         this.spawn(direction, magnitude, templateIndex);
     };
+    ParticleEmitter.prototype.moveTo = function (position) {
+        this.position = new Vector2(position.x, position.y);
+    };
     ParticleEmitter.prototype.update = function (ctx, timeStep) {
         if (this.durations[0] >= this.duration) {
             this.durations.shift();
@@ -49,7 +52,7 @@ var ParticleEmitter = /** @class */ (function () {
         this.waitTimer += timeStep;
         for (var i = 0; i < this.sprites.length; i++) {
             if (!this.sprites[i].checkBounds(ctx.canvas)) {
-                this.sprites[i].move(0.05);
+                this.sprites[i].move(timeStep);
             }
         }
         this.render(ctx);

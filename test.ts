@@ -12,19 +12,19 @@ let turtle = new Sprite(
   true
 );
 let fireball = new Sprite(
-  './src/images/fireball.png',
-  new Vector2(100, 50),
-  new Vector2(50, 50),
+  './src/images/fireball-2.png',
+  new Vector2(-50, -50),
+  new Vector2(75, 75),
   1,
   false,
   false
 );
 let emitter = new ParticleEmitter(
-  [turtle, fireball],
+  [fireball],
   new Vector2(200, 200),
   50,
   10,
-  5
+  1
 );
 turtle.applyForce(new Vector2(0,9.8));
 setInterval(() => {
@@ -33,6 +33,7 @@ setInterval(() => {
   emitter.update(ctx, 0.05);
   turtle.render(ctx);
   if (!turtle.checkBounds(canvas)) {
+    emitter.moveTo(turtle.position);
     turtle.move(0.05);
   }
 }, 10);
