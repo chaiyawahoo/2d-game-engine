@@ -9,6 +9,7 @@
     "test.ts",
     "physics/vectors.ts",
     "physics/entity.ts",
-    "physics/physicsObject.ts"
+    "physics/physicsObject.ts",
+    "physics/particleEmitter.ts"
   ]
 }
