@@ -23,3 +23,12 @@ The purpose of this project is to provide tools for building simple 2D physics-e
   3. Release alpha build v0.0.0-alpha
   4. Add controllability flags to all objects, allowing people to define which objects can be controlled by the user and which cannot
   5. Add control functionality (keyboard/mouse based inputs to denote optional control flags - things like move, jump, etc)
+
+## TODOs:
+  - particle emitters
+  - rotate and scale vectors
+  - comparison operators for all classes
+  - better/cleaner collision check and boundary check
+  - truncate vector values at necessary precision?
+  - build objects that inherit from physicsobject for simple shapes
+  - deploy v0.0.0-alpha
