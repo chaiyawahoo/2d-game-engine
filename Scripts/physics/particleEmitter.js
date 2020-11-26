@@ -6,9 +6,16 @@ import Vector2 from './vectors.js';
 var ParticleEmitter = /** @class */ (function () {
     function ParticleEmitter(spriteTemplates, position, magnitude, duration, wait) {
         var _this = this;
+        var templates = [];
+        if (spriteTemplates instanceof Sprite) {
+            templates = [spriteTemplates];
+        }
+        else {
+            templates = spriteTemplates;
+        }
         this.position = new Vector2(position.x, position.y);
         this.spriteTemplates = [];
-        spriteTemplates.forEach(function (template) {
+        templates.forEach(function (template) {
             var copy = new Sprite(template.image_file, new Vector2(_this.position.x, _this.position.y), template.hitbox, template.mass, template.collidable, template.bounded);
             _this.spriteTemplates.push(copy);
         });

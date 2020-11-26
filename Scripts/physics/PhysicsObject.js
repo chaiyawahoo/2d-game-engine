@@ -12,9 +12,9 @@ var PhysicsObject = /** @class */ (function () {
         this.velocity = new Vector2(0, 0);
         this.acceleration = new Vector2(0, 0);
         this.hitbox = hitbox;
-        this.mass = mass;
-        this.collidable = collidable;
-        this.bounded = bounded;
+        this.mass = mass || 1;
+        this.collidable = collidable || false;
+        this.bounded = bounded || false;
     }
     // Physics calculations
     PhysicsObject.prototype.move = function (timeStep) {

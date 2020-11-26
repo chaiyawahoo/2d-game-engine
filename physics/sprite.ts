@@ -7,8 +7,8 @@ export class Sprite extends PhysicsObject {
   public image_file:string;
   private sprite_element:HTMLImageElement;
 
-  constructor(image_file:string, position:Vector2, hitbox:Vector2, mass:number,
-   collidable:boolean, bounded:boolean) {
+  constructor(image_file:string, position:Vector2, hitbox:Vector2, mass?:number,
+   collidable?:boolean, bounded?:boolean) {
     super(position, hitbox, mass, collidable, bounded);
     this.image_file = image_file;
     this.sprite_element = document.createElement("img") as HTMLImageElement

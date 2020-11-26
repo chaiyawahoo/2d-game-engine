@@ -13,13 +13,19 @@ export class ParticleEmitter {
   durations:number[];
   waitTimer:number;
 
-  constructor(spriteTemplates:Sprite[], position:Vector2, magnitude:number, duration:number, wait:number) {
+  constructor(spriteTemplates:Sprite[] | Sprite, position:Vector2, magnitude:number, duration:number, wait:number) {
+    let templates = [];
+    if (spriteTemplates instanceof Sprite) {
+      templates = [spriteTemplates]
+    } else {
+      templates = spriteTemplates;
+    }
     this.position = new Vector2(position.x, position.y);
     this.spriteTemplates = [];
-    spriteTemplates.forEach(template => {
+    templates.forEach(template => {
       let copy = new Sprite(template.image_file, new Vector2(this.position.x, this.position.y), template.hitbox, template.mass, template.collidable, template.bounded);
       this.spriteTemplates.push(copy);
-    });
+    }); 
     this.magnitude = magnitude;
     this.duration = duration;
     this.wait = wait;

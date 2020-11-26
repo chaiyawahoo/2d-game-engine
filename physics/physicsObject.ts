@@ -17,15 +17,15 @@ export class PhysicsObject implements Entity {
   // Our constructor does not accept a velocity or an acceleration because
   // acceleration should only be added by an applied force, and velocity should
   // only update based on acceleration
-  constructor(position:Vector2, hitbox:Vector2, mass:number,
-   collidable:boolean, bounded:boolean) {
+  constructor(position:Vector2, hitbox:Vector2, mass?:number,
+   collidable?:boolean, bounded?:boolean) {
     this.position = position;
     this.velocity = new Vector2(0, 0);
     this.acceleration = new Vector2(0, 0);
     this.hitbox = hitbox;
-    this.mass = mass;
-    this.collidable = collidable;
-    this.bounded = bounded;
+    this.mass = mass || 1;
+    this.collidable = collidable || false;
+    this.bounded = bounded || false;
   }
 
   // Physics calculations

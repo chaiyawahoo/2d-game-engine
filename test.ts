@@ -20,7 +20,7 @@ let fireball = new Sprite(
   false
 );
 let emitter = new ParticleEmitter(
-  [fireball],
+  fireball,
   new Vector2(200, 200),
   50,
   10,
