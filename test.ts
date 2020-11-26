@@ -27,20 +27,21 @@ let emitter = new ParticleEmitter(
   3
 );
 turtle.applyForce(new Vector2(0,9.8));
-turtle.applyForce(new Vector2(0, -5));
+// turtle.applyForce(new Vector2(0, -5));
 setInterval(() => {
   //console.log(`V: ${thing.velocity.magnitude}\nA: ${thing.acceleration.magnitude}`);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   emitter.update(ctx, 0.5);
   turtle.render(ctx);
-  console.log('V:' + turtle.velocity.y);
-  console.log('A:' + turtle.acceleration.y);
+  // console.log('V:' + turtle.velocity.y);
+  // console.log('A:' + turtle.acceleration.y);
   if (!turtle.checkBounds(canvas)) {
     emitter.moveTo(turtle.position);
-    turtle.move(0.5);
   } else {
-    turtle.applyForce(new Vector2(0, -5));
-    turtle.move(0.5);
+    // turtle.acceleration = new Vector2(0, 0);
+    turtle.velocity = new Vector2(turtle.velocity.x, -turtle.velocity.y);
+    // turtle.applyForce(new Vector2(0, -5));
   }
+  turtle.move(0.5);
 
 }, 100);
