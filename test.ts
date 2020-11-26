@@ -24,16 +24,23 @@ let emitter = new ParticleEmitter(
   new Vector2(200, 200),
   50,
   10,
-  1
+  3
 );
 turtle.applyForce(new Vector2(0,9.8));
+turtle.applyForce(new Vector2(0, -5));
 setInterval(() => {
   //console.log(`V: ${thing.velocity.magnitude}\nA: ${thing.acceleration.magnitude}`);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  emitter.update(ctx, 0.05);
+  emitter.update(ctx, 0.5);
   turtle.render(ctx);
+  console.log('V:' + turtle.velocity.y);
+  console.log('A:' + turtle.acceleration.y);
   if (!turtle.checkBounds(canvas)) {
     emitter.moveTo(turtle.position);
-    turtle.move(0.05);
+    turtle.move(0.5);
+  } else {
+    turtle.applyForce(new Vector2(0, -5));
+    turtle.move(0.5);
   }
-}, 10);
+
+}, 100);

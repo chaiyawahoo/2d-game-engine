@@ -46,7 +46,7 @@ export class ParticleEmitter {
   }
 
   public moveTo(position:Vector2) {
-    this.position = new Vector2(position.x, position.y);
+    this.position.update(position.x, position.y);
   }
 
   public update(ctx:CanvasRenderingContext2D, timeStep:number) {

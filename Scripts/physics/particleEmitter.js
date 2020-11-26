@@ -35,7 +35,7 @@ var ParticleEmitter = /** @class */ (function () {
         this.spawn(direction, magnitude, templateIndex);
     };
     ParticleEmitter.prototype.moveTo = function (position) {
-        this.position = new Vector2(position.x, position.y);
+        this.position.update(position.x, position.y);
     };
     ParticleEmitter.prototype.update = function (ctx, timeStep) {
         if (this.durations[0] >= this.duration) {

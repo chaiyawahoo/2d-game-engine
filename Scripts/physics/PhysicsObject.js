@@ -20,10 +20,13 @@ var PhysicsObject = /** @class */ (function () {
     PhysicsObject.prototype.move = function (timeStep) {
         // Use implicit Euler's method to approximate new state
         this.position.step(this.velocity.x * timeStep, this.velocity.y * timeStep);
-        var terminalVelocity = 100 * Math.sqrt(20 * this.mass / this.hitbox.x);
+        this.velocity.step(this.acceleration.x * timeStep, this.acceleration.y * timeStep);
+        /* TERMINAL VELOCITY BREAKS COLLISIONS
+        let terminalVelocity = 100 * Math.sqrt(20*this.mass / this.hitbox.x);
         if (this.velocity.magnitude < terminalVelocity) {
-            this.velocity.step(this.acceleration.x * timeStep, this.acceleration.y * timeStep);
+          this.velocity.step(this.acceleration.x * timeStep, this.acceleration.y * timeStep);
         }
+        */
         return this.position;
     };
     PhysicsObject.prototype.applyForce = function (force) {
